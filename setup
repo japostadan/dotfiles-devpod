@@ -28,7 +28,9 @@ ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
   unzip \
   tar \
   pkg-config \
-  software-properties-common
+  software-properties-common \
+  lazygit \
+  fzf \
 
 echo "Finished downloading Packages"
 
