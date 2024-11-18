@@ -36,5 +36,5 @@ echo "Finished downloading Packages"
 
 # Set up pure prompt
 mkdir -p "$HOME/.zsh"
-git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure
-echo "Development environment setup is complete!"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+echo "Development environment setup is up"
