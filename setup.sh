@@ -35,28 +35,16 @@ sudo apt-get update && sudo apt-get install -y \
   software-properties-common \
   fzf \
   ripgrep \
-  fd-find \
-  lazygit \
   neovim \
   zsh \
   tmux
-
-# Ensure `fd` is properly aliased (Ubuntu's `fd` is named `fdfind`)
-if ! command -v fd &>/dev/null; then
-  echo "Setting up fd alias..."
-  ln -s $(which fdfind) ~/.local/bin/fd || true
-  export PATH="$HOME/.local/bin:$PATH"
-fi
 
 # Install LazyVim
 echo "Setting up LazyVim..."
 mkdir -p "$XDG_CONFIG_HOME/nvim"
 
 # Download LazyVim starter template
-git clone https://github.com/LazyVim/starter "$XDG_CONFIG_HOME/nvim"
-
-# Install pynvim for Python support in Neovim
-pip3 install --user pynvim
+ git clone https://github.com/LazyVim/starter "$XDG_CONFIG_HOME/nvim"
 
 # Set Zsh as the default shell
 echo "Setting Zsh as the default shell..."
