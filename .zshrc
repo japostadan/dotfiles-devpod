@@ -1,9 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+
+
+
 
 # ~~~~~~~~~~~~~~~ Editing Mode ~~~~~~~~~~~~~~~~~~~~~~~~
 set -o vi
@@ -20,18 +17,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
-export ZETTELKASTEN="$HOME/Zettelkasten"
-
-# ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-export GOBIN="$HOME/.local/bin"
-export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-export GOPATH="$HOME/go/"
-
-# ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-export GOPATH="$HOME/.local/share/go"
-export GOPATH="$HOME/go/"
-
-# ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
+export ZETTELKASTEN="$HOME/Ikigai"
 
 
 setopt extended_glob null_glob
@@ -59,13 +45,6 @@ if [ -d "/home/linuxbrew/.linuxbrew" ]; then
 fi
 
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
-HISTFILE=~/.zsh_history
-HISTSIZE=25000
-SAVEHIST=25000
-
-setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
-setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
-setopt SHARE_HISTORY      # Share history between sessions
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 PURE_GIT_PULL=0
@@ -95,7 +74,6 @@ alias reload-tmux='tmux source-file ~/.tmux.conf'
 
 # Navigation
 alias scripts='cd $SCRIPTS'
-alias cdblog="cd ~/websites/blog"
 alias icloud="cd \$ICLOUD"
 alias lab='cd $LAB'
 alias dot='cd $GHREPOS/dotfiles'
@@ -103,10 +81,6 @@ alias ghrepos='cd $GHREPOS'
 alias gr='ghrepos'
 alias cdzk="cd \$ZETTELKASTEN"
 
-# Pane and workflow consistency
-alias hl='cd $GHREPOS/homelab/'
-alias hlp='cd $GHREPOS/homelab-private/'
-alias hlpp='cd $GHREPOS/homelab-private-production/'
 
 # ls
 alias ls='ls --color=auto'
@@ -120,13 +94,21 @@ alias c='clear'
 alias e='exit'
 
 # Git
-alias gp='git pull'
+alias gl='git pull'
+alias gp='git push'
 alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gcl='git clone --revursive-submodules'
+alias gcm='git commit --all --message'
+alias glog='git log --oneline --decorate --graph --all'
+
 alias lg='lazygit'
 
 # Zettelkasten
 
-alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
+alias in="cd \$ZETTELKASTEN/inbox/"
 alias cdzk="cd \$ZETTELKASTEN"
 
 # Kubernetes
@@ -163,8 +145,8 @@ compinit -u
 zstyle ':completion:*' menu select
 
 # ~~~~~~~~~~~~~~~ Sourcing ~~~~~~~~~~~~~~~~~~~~~~~~
-#source "$HOME/.privaterc"
-#source <(fzf --zsh)
+source "$HOME/.privaterc"
+source <(fzf --zsh)
 
 # ~~~~~~~~~~~~~~~ Misc Enhancements ~~~~~~~~~~~~~~~~~~~~~~~~
 # Add tmux integration for Vi-style pane navigation in shell
@@ -179,13 +161,3 @@ fi
 # Enable `direnv` for managing environment variables per directory
 #eval "$(direnv hook zsh)"
 
-# ~~~~~~~~~~~~~~~ Final Notes ~~~~~~~~~~~~~~~~~~~~~~~~
-# Consistent environment variables, shortcuts, and tmux integration
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source <(fzf --zsh)
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
